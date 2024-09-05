@@ -1,4 +1,4 @@
-# xdcGenerator
+# xdcGen
 This is a lite generator of the constraint file for the Xilinx Vivado (namely `.xdc`). 
 
 This tool allows you to use minimum script language to generate a `.xdc`. 

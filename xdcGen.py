@@ -2,8 +2,15 @@ import argparse
 import os
 from xdcLib import *
 import datetime
+import re
 
 deviceCls = None
+
+def is_valid_expression(expression : str) -> bool:
+    pattern = "^([a-zA-Z_])([a-zA-Z0-9_]*)$"
+    
+    return bool(re.match(pattern, expression))
+    
 
 def strip_blank(line):
     return line.strip()
@@ -21,6 +28,8 @@ def parse_sugar(pins):
         else:
             ret.append(pin)
     return ret
+
+
 
 def parse_expression(exp, isLeft): # an express mean a single or aggregated name of pins
     if not '|' in exp:
@@ -41,6 +50,11 @@ def parse_expression(exp, isLeft): # an express mean a single or aggregated name
             name, rest = exp[0], exp[1]
             name = strip_blank(name)
             rest = rest.split(':')
+            if not is_valid_expression(name):
+                print("Illegal pin name: " + name + ".")
+                print(f"Invalid expression: {exp}")
+                return None
+            
             if len(rest) > 3 or len(rest) < 2:
                 print(f"Invalid expression: {exp}")
                 return None
@@ -61,9 +75,9 @@ def parse_expression(exp, isLeft): # an express mean a single or aggregated name
                 step = 1
             if start > end:
                 step = -step
-            i = start
+            i = start # LED |2:1:1|
             ret = []
-            while i >= start and i <= end:
+            while i >= min(start, end) and i <= max(start, end):
                 if isLeft:
                     ret.append(f"{name}{i}")
                 else:
@@ -76,6 +90,7 @@ def parse_expression(exp, isLeft): # an express mean a single or aggregated name
                 print(f"Invalid expression: {exp}")
                 return None
             name, rest = exp[:first_idx], exp[first_idx+2:last_idx]
+            name = strip_blank(name)
             try:
                 rest = eval("list(" + rest + ")")
             except:
@@ -91,7 +106,7 @@ def parse_expression(exp, isLeft): # an express mean a single or aggregated name
     # should not be here
 
 def parse_script_line(line):
-    # find index of '~' in the line
+    idx_comment = line.find('#')
     idx = line.find('~')
     if idx == -1:
         return False
@@ -123,6 +138,9 @@ def parse_script_line(line):
     left_pins = parse_sugar(left_pins)
     if len(left_pins) != len(right_pins):
         print(f"LHS and RHS have different sum of pins.")
+        return False
+    elif len(left_pins) == 0:
+        print(f"No pins found")
         return False
     print(f"Left pins: {left_pins}")
     print(f"Right pins: {right_pins}")
@@ -165,6 +183,9 @@ def main():
     output = ""
     for i in range(len(content)):
         line = content[i]
+        idx_comment = line.find('#')
+        if idx_comment != -1:
+            line = line[:idx_comment]
         if not strip_blank(line):
             continue
         parsed = parse_script_line(line)
@@ -175,7 +196,7 @@ def main():
         for j in range(len(left_pins)):
             output += f"{deviceCls.lookup(left_pins[j]).getStr(right_pins[j])}\n"
     # by default write to file named date and time
-    output_path = args.o if args.o else os.path.join(os.getcwd(), f"xdcGen_{device}_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.xdc")
+    output_path = args.o if args.o else os.path.join(os.getcwd(), f"xdc/xdcGen_{device}_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.xdc")
     with open(output_path, 'w') as output_file:
         output_file.write(output)
     print(f"XDC file generated at {output_path}")

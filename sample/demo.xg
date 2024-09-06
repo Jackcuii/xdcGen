@@ -1,0 +1,11 @@
+SW ||range(8)|| ~ zr |1:8|
+# comment
+clk ~ CLKKKKKKKKKKK # clk
+
+LED |1:8:2| ~ ledddd ||2*i + 1 for i in range(4)|| 
+seg7 ~ f1;f2;f3; zr |4:7|
+seg7 ~ zr2|1:7|
+
+AN ||[1,2]+[3,4]|| ~ an || _ + 1 for _ in range(4)||
+
+AN ||[1,2]+[3,4]||; BC ~ an | 1           : 4 : 100|; an2 || [2,4,            6 , 10] ||

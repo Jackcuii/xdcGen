@@ -1,0 +1,1 @@
+echo "alias xdcgen='python3 $(dirname "$0")/xdcGen.py'" >> ~/.bashrc

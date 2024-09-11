@@ -79,7 +79,7 @@ Annotations are after `#`(like python).
 
 Extra empty line is allowed.
 
-Special Notice
+#### Special Notice
 - `~` is not allowed in the python expression, for it will cause parsing process to crash.
 - Bonding a real pin to multiple module ports is UB. (actually it may not cause an error in **xdcGen**, but it will definitely cause a synthesis error.)  
 

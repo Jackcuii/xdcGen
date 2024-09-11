@@ -71,6 +71,8 @@ You should not add range expression or python expression to syntax sugar.
 If you need to assign them seperately, you should write them seperately, like
 `CA, CB, CC ~ out|0:2|`
 
+---
+
 See more examples at [/sample/demo.xg](https://github.com/Jackcuii/xdcGen/blob/main/sample/demo.xg)
 
 Annotations are after `#`(like python).

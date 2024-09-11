@@ -36,11 +36,11 @@ Then each pin on the right will be bonded to the corresponding pin on the left.
 
 exps could be in 4 forms:
 
-1. atomic expression
+#### 1. atomic expression
 
   a single pin: `SW1` (at left), `in[0]`(at right).
   
-2. range expression
+#### 2. range expression
 
   `XX|x:y:z|`or`XX|x:y|` means a range of pins, from x to y, with step z.(`y` is included)
   
@@ -50,7 +50,7 @@ exps could be in 4 forms:
   
   if at right, then `in|0:3|` means `in[0], in[1], in[2], in[3]` and so on.
 
-3. python expression
+#### 3. python expression
   
   In `XX||python||`, `python` means a python expression, which should be passed to the `list()` constructor in python and return a list of integers.
   
@@ -58,7 +58,7 @@ exps could be in 4 forms:
 
   Expanation: `list(i for i in range(1, 6) if i % 2 == 0)` is `[2, 4]`.
 
-4. syntax sugar
+#### 4. syntax sugar
 Now we support 3 syntax sugars:
 - `seg7` will be expanded to `CA, CB, CC, CD, CE, CF, CG, DP`.
 - `clk` will be expanded to `CLK100`.

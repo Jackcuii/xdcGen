@@ -52,7 +52,7 @@ class A7_100T_Pin(Pin):
 
 package_pins1 = ["J15", "L16", "M13", "R15", "R17", "T18", "U18", "R13", "T8", "U8", "R16", "T13", "H6", "U12", "U11", "V10"]
 package_pins2 = ["H17", "K15", "J13", "N14", "R18", "V17", "U17", "U16", "V16", "T15", "U14", "T16", "V15", "V14", "V12", "V11"]
-package_pins3 = ["R12", "M16", "N15", "G14", "R11", "N16"]
+package_pins3 = ["N15", "M16", "R12", "N16", "R11", "G14"]
 rgb = ["LED16R", "LED16G", "LED16B", "LED17R", "LED17G", "LED17B"]
 package_pins4 = ["T10", "R10", "K16", "K13", "P15", "T11", "L18", "H15"]
 seg = ["CA", "CB", "CC", "CD", "CE", "CF", "CG", "DP"]

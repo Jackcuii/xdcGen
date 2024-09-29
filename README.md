@@ -93,3 +93,4 @@ now the *real pins* below is supported.
 - `AN0 - AN7` 8 anodes of 7seg display
 - `LED16R, LED16G, LED16B, LED17R, LED17G, LED17B` 6 RGB LEDs
 - `CLK100, RST` clock and reset
+- `PS2CLK, PS2DAT` PS2 keyboard

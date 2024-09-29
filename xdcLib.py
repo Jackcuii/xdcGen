@@ -1,3 +1,5 @@
+# Raw classes
+class Pin:
     def __init__(self, args):
         self.args = args
     def getStr(self, port):
@@ -65,7 +67,7 @@ seg7en = {f"AN{i}" : A7_100T_Pin(f"{package_pins5[i]}") for i in range(8)}
 reset = {"RST" : A7_100T_Pin("C12")}
 buttons = {f"{button[i]}" : A7_100T_Pin(f"{package_pins6[i]}") for i in range(5)}
 clock = {"CLK100" : A7_100T_Pin("E3")}
-usb = {"PS2CLK" : A7_100T_Pin("F4"), "PS2DATA" : A7_100T_Pin("B2")
+usb = {"PS2CLK" : A7_100T_Pin("F4"), "PS2DATA" : A7_100T_Pin("B2")}
 
 class A7_100T(FPGAdevice):
     name = "Artix-7 100T"

@@ -45,6 +45,11 @@ class FPGAdevice:
         print("Poorly implemented 7-segment enable map")
         assert(0)
 
+    @classmethod
+    def vgaMap(cls):
+        print("Poorly implemented VGA map")
+        assert(0)
+
 # Add new supports here
 class A7_100T_Pin(Pin):
     def getStr(self, port):
@@ -68,11 +73,15 @@ reset = {"RST" : A7_100T_Pin("C12")}
 buttons = {f"{button[i]}" : A7_100T_Pin(f"{package_pins6[i]}") for i in range(5)}
 clock = {"CLK100" : A7_100T_Pin("E3")}
 usb = {"PS2CLK" : A7_100T_Pin("F4"), "PS2DATA" : A7_100T_Pin("B2")}
+vgas = ["VGAR0","VGAR1","VGAR2","VGAR3","VGAG0","VGAG1","VGAG2","VGAG3","VGAB0","VGAB1","VGAB2","VGAB3","HSYNC","VSYNC"]
+package_pins7 = ["A3", "B4", "C5", "A4", "C6", "A5", "B6", "A6", "B7", "C7", "D7", "D8", "B11", "B12"]
+vga = {f"{vgas[i]}" : A7_100T_Pin(f"{package_pins7[i]}") for i in range(14)}
+
 
 class A7_100T(FPGAdevice):
     name = "Artix-7 100T"
     # actually, you do not need to add pin infos seperately, here is to clearly show it
-    allpins = {**switches, **leds, **rgbs, **seg7, **seg7en, **reset, **buttons, **clock, **usb}
+    allpins = {**switches, **leds, **rgbs, **seg7, **seg7en, **reset, **buttons, **clock, **usb, **vga}
 
     @classmethod
     def ClockMap(cls):
@@ -86,6 +95,9 @@ class A7_100T(FPGAdevice):
     def Seg7EnMap(cls):
         return ["AN0", "AN1", "AN2", "AN3", "AN4", "AN5", "AN6", "AN7"]
 
+    @classmethod 
+    def vgaMap(cls):
+        return ["VGAR0","VGAR1","VGAR2","VGAR3","VGAG0","VGAG1","VGAG2","VGAG3","VGAB0","VGAB1","VGAB2","VGAB3","HSYNC","VSYNC"]
 # Register new devices here
 SupportedDevices = [A7_100T]
     

@@ -63,6 +63,7 @@ Now we support 3 syntax sugars:
 - `seg7` will be expanded to `CA, CB, CC, CD, CE, CF, CG, DP`.
 - `clk` will be expanded to `CLK100`.
 - `seg7en` will be expanded to `AN0, AN1, AN2, AN3, AN4, AN5, AN6, AN7`.
+- `vga` will be expanded to `VGAR0, VGAR1, VGAR2, VGAR3, VGAG0, VGAG1, VGAG2, VGAG3, VGAB0, VGAB1, VGAB2, VGAB3, HSYNC, VSYNC`.
 
 syntax sugar could only be used at left.
 
@@ -94,3 +95,4 @@ now the *real pins* below is supported.
 - `LED16R, LED16G, LED16B, LED17R, LED17G, LED17B` 6 RGB LEDs
 - `CLK100, RST` clock and reset
 - `PS2CLK, PS2DAT` PS2 keyboard
+- `VGAR/G/B0-3, HSYNC, VSYNC` VGA

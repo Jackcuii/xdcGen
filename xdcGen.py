@@ -25,6 +25,8 @@ def parse_sugar(pins):
             ret += deviceCls.Seg7Map()
         elif pin == "seg7en":
             ret += deviceCls.Seg7EnMap()
+        elif pin == "vga":
+            ret += deviceCls.vgaMap()
         else:
             ret.append(pin)
     return ret
